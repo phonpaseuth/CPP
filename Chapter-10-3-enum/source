@@ -1,0 +1,113 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+enum GeologicTime 
+{
+	Neogene, Paleogene, Cretaceous, Jurassic, Triassic, Permian, 
+	Carboniferous, Devonian, Silurian, Ordovician, Cambrian, Precambrian
+};
+
+int CheckTime(int);
+string ConvertName(int);
+
+int main()
+{
+	int startDate, startNum = 0;
+	int endDate, endNum = 0;
+	string name;
+	char initial = 'c';
+
+	while (initial != 's') //program keeps running until "stop" command is counter
+	{
+		cout << "Enter starting and ending date: " << endl;
+		cin >> startDate >> endDate;
+
+		startNum = CheckTime(startDate);	//assign the starting and ending 
+		endNum = CheckTime(endDate);		//date a number that match up with the list
+
+		cout << "Periods involve: " << endl;
+		while (startNum <= endNum)			//it will print out all the period within the range
+		{
+			name = ConvertName(endNum);		//convert the assigned number to an actual name
+			cout << name << endl;
+			endNum--;
+		}
+
+		cout << "Enter 's' to stop, 'c' to continue!" << endl;	//stop and continue command
+		cin >> initial;
+	}
+
+	return 0;
+}
+
+int CheckTime(int date)
+{
+	int num;
+	
+	if (date <= 22)
+		num = -1;			//has to set to -1 because initial position(Neogene) starts at 0
+	else if (date <= 64)
+		num = Neogene;
+	else if (date <= 135)
+		num = Paleogene;
+	else if (date <= 191)
+		num = Cretaceous;
+	else if (date <= 221)
+		num = Jurassic;
+	else if (date <= 279)
+		num = Triassic;
+	else if (date <= 344)
+		num = Permian;
+	else if (date <= 394)
+		num = Carboniferous;
+	else if (date <= 434)
+		num = Devonian;
+	else if (date <= 499)
+		num = Silurian;
+	else if (date <= 569)
+		num = Ordovician;
+	else if (date <= 4499)
+		num = Cambrian;
+	else
+		num = Precambrian;
+	
+	return num;
+}
+
+string ConvertName(int number)
+{
+	string name;
+	
+	switch (number)
+	{
+	case -1: name = "Pre-Neogene";
+		break;
+	case 0: name = "Neogene";
+		break;
+	case 1: name = "Paleogene";
+		break;
+	case 2: name = "Cretaceous";
+		break;
+	case 3: name = "Jurassic";
+		break;
+	case 4: name = "Triassic";
+		break;
+	case 5: name = "Permian";
+		break;
+	case 6: name = "Carboniferous";
+		break;
+	case 7: name = "Devonian";
+		break;
+	case 8: name = "Silurian;
+		break;
+	case 9: name = "Ordovician";
+		break;
+	case 10: name = "Cambrian";
+		break;
+	case 11: name = "Precambrian";
+		break;
+	}
+	
+	return name;
+}
