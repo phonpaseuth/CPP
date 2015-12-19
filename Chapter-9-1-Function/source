@@ -1,0 +1,93 @@
+/*This programs read in hourly barometer for an entire year from the file "barometric.txt."
+The measurement expressed in inches of mercury, it is a decimal number ranging from 28.00 to 32.00.
+The program determine the maximum, minimum, as well as the differences of the measurement
+and print them to "differences.txt" file. It also calculate the greatest and least differences
+and cout at the end of the program.*/
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+void FindMax(double&, double&);		//reference parameter works best because values are
+void FindMin(double&, double&);		//constanstly changing
+void FindGreat(double&, double&);
+void FindLeast(double&, double&);
+
+int main()
+{
+	int hour, day;
+	double num, maxNum, minNum, diff;
+	double great = 0, least = 5;
+	ifstream inData;
+	ofstream outData;
+
+	inData.open("barometric.txt");
+	outData.open("differences.txt");
+
+	day = 1;			//assuming to be January 1	
+	inData >> num;		//prim reading
+
+	while (day <= 365)	//365 days on regular years
+	{
+		hour = 0;		//initialize everyday
+		maxNum = 0;
+		minNum = 100;
+		while (hour <= 23) //run 24 times for each day
+		{
+			FindMax(num, maxNum); //keep track of maximum for the day
+			FindMin(num, minNum); //keep track of minimum for the day
+			inData >> num;
+			hour++;
+		}
+		
+		diff = maxNum - minNum;	//calculate the difference by the end of the day
+
+		FindGreat(diff, great);	//keep track of the greatest differences every day
+		FindLeast(diff, least);	//delete the previous stored value if greater or least value is found
+		
+		outData << day << " " << maxNum << " ";		//print to file for everyday
+		outData << minNum << " " << diff << endl;
+		
+		inData >> num;
+		day++;
+	}
+
+	cout << "Greatest differences this year: " << great << endl;	//print great and least
+	cout << "Least differences this year: " << least << endl;
+
+	inData.close();
+	outData.close();
+	return 0;
+}
+
+void FindMax(double& num, double& maxNum)
+{
+	if (num >= maxNum)
+		maxNum = num;
+	else
+		maxNum = maxNum;
+}
+
+void FindMin(double& num, double& minNum)
+{
+	if (num <= minNum)
+		minNum = num;
+	else
+		minNum = minNum;
+}
+
+void FindGreat(double& diff, double& great)
+{
+	if (diff >= great)
+		great = diff;
+	else
+		great = great;
+}
+
+void FindLeast(double& diff, double& least)
+{
+	if (diff <= least)
+		least = diff;
+	else
+		least = least;
+}
