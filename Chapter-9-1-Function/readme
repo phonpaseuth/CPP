@@ -1,0 +1,12 @@
+PPSWC-PP-C-9-1
+Programming and Problem Solving with C++ 5th Edition
+
+Nell Dale and Chip Weems
+
+PG. 447
+
+You are working on a proect that requires climate data for a location. The maximum daily change in barometric pressure is one aspect of climaate that your company needs. You have a file (barometric.txt) containing hourly barometer readings taken over the course of a year. Each line of the file contains the readings for a single day, separated by blanks. Each reading is expressed in inches of mercury, so it is a decimal number ranging from approximately 28.00 to 32.00. For each line of data, you need to determine the maximum and minimum readings, and output the difference between those readings to file "differences.txt". Each output value should appear on a separate line of the file. Once the file has been read, the program should output the greatest and least differences for the year on cout. Develop the program using functional decomposition, and use proper style and documentation in your code. Your program should make appropriate use of value-returning functions in solving this problem.
+
+*I did not use value-returning functions but it should be an easy fix
+
+*I put the output in the same line for the same day
