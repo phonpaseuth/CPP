@@ -1,3 +1,5 @@
+//This is a specification files
+
 #include "PhoneType.h"
 
 class PhoneNumber
